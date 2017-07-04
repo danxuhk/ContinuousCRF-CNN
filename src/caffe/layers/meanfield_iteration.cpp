@@ -1,19 +1,17 @@
 /*!
- *  \brief     A helper class for {@link MultiStageMeanfieldLayer} class, which is the Caffe layer that implements the
- *             CRF-RNN described in the paper: Conditional Random Fields as Recurrent Neural Networks. IEEE ICCV 2015.
- *
- *             This class itself is not a proper Caffe layer although it behaves like one to some degree.
- *
- *  \authors   Sadeep Jayasumana, Bernardino Romera-Paredes, Shuai Zheng, Zhizhong Su.
+ *  \brief     A CNN implementation for continuous mean-field updating with inspiration from the CRF-RNN implementation
+ *  \authors   Dan Xu
  *  \version   1.0
- *  \date      2015
- *  \copyright Torr Vision Group, University of Oxford.
- *  \details   If you use this code, please consider citing the paper:
- *             Shuai Zheng, Sadeep Jayasumana, Bernardino Romera-Paredes, Vibhav Vineet, Zhizhong Su, Dalong Du,
- *             Chang Huang, Philip H. S. Torr. Conditional Random Fields as Recurrent Neural Networks. IEEE ICCV 2015.
- *
- *             For more information about CRF-RNN, please visit the project website http://crfasrnn.torr.vision.
- */
+ *  \date      2016
+ *  \citation   If you use this code, please consider citing the paper:
+ *      @inproceedings{xu2017multi,
+ *         title={Multi-Scale Continuous CRFs as Sequential Deep Networks for Monocular Depth Estimation},
+ *         author={Xu, Dan and Ricci, Elisa and Ouyang, Wanli and Wang, Xiaogang and Sebe, Nicu},
+ *         journal={CVPR},
+ *         year={2017}
+ *      }
+*/
+
 #include <vector>
 
 #include "caffe/filler.hpp"
