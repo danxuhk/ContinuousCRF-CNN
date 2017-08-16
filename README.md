@@ -2,7 +2,7 @@
 By Dan Xu, Elisa Ricci, Wanli Ouyang, Xiaogang Wang and Nicu Sebe
 ## Introduction
 CRF-CNN is a monocular depth estimation approach asscoiated to an arxiv submission https://arxiv.org/pdf/1704.02157.pdf which is accepted at CVPR 2017. </br>
-The currently published version implements a multi-scale cascade continuous CRF model. The code is implemented with Caffe and has been tested under the configurations of Ubuntu 14.04, MATLAB 2015b and CUDA 7.0.
+The currently published version implements a multi-scale cascade continuous CRF model. The model is implemented as a CNN layer and can be also applicable to other continuous regression problems. The code is implemented under Caffe and has been tested under the configurations of Ubuntu 14.04, MATLAB 2015b and CUDA 7.0.
 ## Citation
 Please consider citing our paper if the code is helpful in your research work:
 <pre>@inproceedings{xu2017multi,
