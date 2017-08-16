@@ -11,5 +11,4 @@ Please consider citing our paper if the code is helpful in your research work:
   journal={CVPR},
   year={2017}
 }</pre>
-## Requirements
-<p> Please first download and install this modified caffe version for CCRF-CNN and test by downloading the trained models and network deploy prototxt files from <a href="https://drive.google.com/drive/folders/0ByWGxNo3TouJNFRydFptVG5RWVkthk?usp=sharing">Google Drive</a>.</p>
+
