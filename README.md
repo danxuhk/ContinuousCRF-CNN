@@ -17,7 +17,6 @@ layer {
   multi_stage_meanfield_param { num_iterations: 6 theta_alpha: 22 theta_beta: 1 theta_gamma: 1 
   spatial_weight: 3 bilateral_weight: 5 } 
   }
-
 ##Structured fusion of two scales using Continous-CRF-CNN (the output of inference 1 
 will be used as an input scale in this phase)##
 layer {
@@ -27,8 +26,7 @@ layer {
   multi_stage_meanfield_param { num_iterations: 6 theta_alpha: 22 theta_beta: 1 theta_gamma: 1 
   spatial_weight: 3 bilateral_weight: 5 } 
   }
-  
-  ... To stack more for more scales ...</pre>
+... To stack more for more scales ...</pre>
 ## Citation
 Please consider citing our paper if the code is helpful in your research work:
 <pre>@inproceedings{xu2017multi,
