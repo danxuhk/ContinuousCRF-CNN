@@ -8,18 +8,24 @@ The code is implemented under Caffe and has been tested under the configurations
 To take a practice of our method, please download the trained model and the deploy network file from 
 <a href="https://drive.google.com/open?id=0ByWGxNo3TouJRDFPdWF4UWFubVk">Google Drive</a>.
 The structured fusion of multiple Scales of the predictions are performed using the developed MultiStageMeanField Caffe layer together with the continuous mean-field updating implementation. The number of mean-field interations could be specified, and the caffe prototxt definition is as follows:
-<pre> ##Structured fusion of two scales using Continous-CRF-CNN
+<pre> ##Structured fusion of two scales using Continous-CRF-CNN##
 layer {
-  name: "inference1" # set the name to be the same as in the training phase to load parameters in the testing phase
-  type: "MultiStageMeanfield" bottom: "upscore-map5" bottom: "upscore-map4" bottom: "data" top: "predicted-map1"
-  multi_stage_meanfield_param { num_iterations: 6 theta_alpha: 22 theta_beta: 1 theta_gamma: 1 spatial_weight: 3 bilateral_weight: 5 } 
+  name: "inference1" # set the name to be the same as in the training phase to 
+  load parameters in the testing phase #
+  type: "MultiStageMeanfield" bottom: "upscore-map5" bottom: "upscore-map4" bottom: "data" 
+  top: "predicted-map1"
+  multi_stage_meanfield_param { num_iterations: 6 theta_alpha: 22 theta_beta: 1 theta_gamma: 1 
+  spatial_weight: 3 bilateral_weight: 5 } 
   }
 
-##Structured fusion of two scales using Continous-CRF-CNN (the output of inference 1 will be used as an input in this phase)
+##Structured fusion of two scales using Continous-CRF-CNN (the output of inference 1 
+will be used as an input in this phase)##
 layer {
-  name: "inference2" #if you set name "inference1", code will load parameters from caffemodel.
-  type: "MultiStageMeanfield" bottom: "predicted-map1" bottom: "upscore-map3" bottom: "data" top: "predicted-map2"
-  multi_stage_meanfield_param { num_iterations: 6 theta_alpha: 22 theta_beta: 1 theta_gamma: 1 spatial_weight: 3 bilateral_weight: 5 } 
+  name: "inference2" #if you set name "inference1", code will load parameters from caffemodel#
+  type: "MultiStageMeanfield" bottom: "predicted-map1" bottom: "upscore-map3" bottom: "data" 
+  top: "predicted-map2"
+  multi_stage_meanfield_param { num_iterations: 6 theta_alpha: 22 theta_beta: 1 theta_gamma: 1 
+  spatial_weight: 3 bilateral_weight: 5 } 
   }
   </pre>
 
