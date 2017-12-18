@@ -8,7 +8,7 @@ The code is implemented under Caffe and has been tested under the configurations
 To take a practice of our method, please download the trained model and the deploy network file from 
 <a href="https://drive.google.com/open?id=0ByWGxNo3TouJRDFPdWF4UWFubVk">Google Drive</a>.
 The structured fusion of multiple Scales of the predictions are performed using the developed MultiStageMeanField Caffe layer together with the continuous mean-field updating implementation. The number of mean-field interations could be specified, and the caffe prototxt definition is as follows:
-##Structured fusion of two scales using Continous-CRF-CNN##
+<pre>##Structured fusion of two scales using Continous-CRF-CNN##
 layer {
   name: "inference1" # set the name to be the same as in the training phase to 
   load parameters in the testing phase #
@@ -28,7 +28,7 @@ layer {
   spatial_weight: 3 bilateral_weight: 5 } 
   }
   
-  ... To stack more for more scales ...
+  ... To stack more for more scales ...</pre>
 ## Citation
 Please consider citing our paper if the code is helpful in your research work:
 <pre>@inproceedings{xu2017multi,
