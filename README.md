@@ -6,7 +6,7 @@ The currently published version implements a multi-scale cascade continuous CRF 
 The code is implemented under Caffe and has been tested under the configurations of Ubuntu 14.04, MATLAB 2015b and CUDA 7.0.
 ## Trained Model and Deploy file 
 To take a practice of our method, please download the trained model and the deploy network file from 
-<a href="https://drive.google.com/open?id=0ByWGxNo3TouJNFRydFptVG5RWVk">Google Drive</a>.
+<a href="https://drive.google.com/open?id=0ByWGxNo3TouJRDFPdWF4UWFubVk">Google Drive</a>.
 ## Citation
 Please consider citing our paper if the code is helpful in your research work:
 <pre>@inproceedings{xu2017multi,
