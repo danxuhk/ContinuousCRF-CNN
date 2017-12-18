@@ -1,5 +1,10 @@
 # Multi-Scale Continuous CRFs as Sequential Deep Networks for Monocular Depth Estimation
 By Dan Xu, Elisa Ricci, Wanli Ouyang, Xiaogang Wang and Nicu Sebe
+
+<p align="center">
+  <img src="examples/images/framework.jpg" width="350"/>
+</p>
+
 ## Introduction
 CRF-CNN is a monocular depth estimation approach asscoiated to an arxiv submission https://arxiv.org/pdf/1704.02157.pdf which is accepted at CVPR 2017. </br>
 The currently published version implements a multi-scale cascade continuous CRF model. The model is implemented as a CNN layer and can be also applicable to other continuous regression problems. </br>
