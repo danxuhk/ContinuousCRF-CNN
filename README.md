@@ -2,7 +2,7 @@
 By Dan Xu, Elisa Ricci, Wanli Ouyang, Xiaogang Wang and Nicu Sebe
 
 <p align="center">
-  <img src="examples/images/framework.jpg" width="350"/>
+  <img src="examples/images/framework.jpg" width="480"/>
 </p>
 
 ## Introduction
