@@ -2,13 +2,14 @@
 By Dan Xu, Elisa Ricci, Wanli Ouyang, Xiaogang Wang and Nicu Sebe
 
 <p align="center">
-  <img src="examples/images/framework.jpg" width="350"/>
+  <img src="examples/images/framework.jpg" width="800"/>
 </p>
 
 ## Introduction
-CRF-CNN is a monocular depth estimation approach asscoiated to an arxiv submission https://arxiv.org/pdf/1704.02157.pdf which is accepted at CVPR 2017. </br>
+CCRF-CNN is a continuous CRFs model implemented with neural networks for structured fusion of multi-scale predictions which is applied in monocular depth estimation and was accepted at CVPR 2017. </br>
 The currently published version implements a multi-scale cascade continuous CRF model. The model is implemented as a CNN layer and can be also applicable to other continuous regression problems. </br>
-The code is implemented under Caffe and has been tested under the configurations of Ubuntu 14.04, MATLAB 2015b and CUDA 7.0.
+The code is implemented under Caffe and has been tested under the configurations of Ubuntu 14.04, MATLAB 2015b and CUDA 7.0.</br>
+Links: [<a href='https://arxiv.org/pdf/1704.02157.pdf'>PAPER</a>][<a href='https://youtu.be/4mdqh6YGhgE'>ORAL PRESENTATION</a>]
 ## Trained Model and Deploy file 
 To take a practice of our method, please download the trained model and the deploy network file from 
 <a href="https://drive.google.com/open?id=0ByWGxNo3TouJRDFPdWF4UWFubVk">Google Drive</a>.
