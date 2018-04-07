@@ -38,7 +38,7 @@ layer {
  
 ## Results on NYUD-v2 and Make3D
 <p align="center">
-  <img src="examples/images/make3D.jpg" width="650"/>
+  <img src="examples/images/make3D.jpg" width="750"/>
 </p>
 
 ## Citation
