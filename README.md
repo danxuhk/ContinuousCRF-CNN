@@ -36,10 +36,11 @@ layer {
   
  ... To stack more for fusing more scales ...</pre>
  
-## Results on NYUD-v2 and Make3D
+## Results on Make3D
 <p align="center">
-  <img src="examples/images/make3D.jpg" width="750"/>
+  <img src="examples/images/make3D.jpg" width="850"/>
 </p>
+Results of Make3D test dataset can be downloaded from Here.
 
 ## Citation
 Please consider citing our paper if the code is helpful in your research work:
