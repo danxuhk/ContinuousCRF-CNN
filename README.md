@@ -36,9 +36,9 @@ layer {
   
  ... To stack more for fusing more scales ...</pre>
  
-##Results on NYUD-v2 and Make3D
+## Results on NYUD-v2 and Make3D
 <p align="center">
-  <img src="examples/images/make3D.jpg" width="350"/>
+  <img src="examples/images/make3D.jpg" width="650"/>
 </p>
 
 ## Citation
