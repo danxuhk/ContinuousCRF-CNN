@@ -34,6 +34,12 @@ layer {
   }
   
  ... To stack more for fusing more scales ...</pre>
+ 
+##Results on NYUD-v2 and Make3D
+<p align="center">
+  <img src="examples/images/make3d.jpg" width="350"/>
+</p>
+
 ## Citation
 Please consider citing our paper if the code is helpful in your research work:
 <pre>@inproceedings{xu2017multi,
