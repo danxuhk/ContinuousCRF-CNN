@@ -39,7 +39,9 @@ layer {
 ## Results on NYUD-V2
 The results with ResNet-50 as a backbone and trained on 795 standard training set. 
 Examples as follows:
-
+<p align="center">
+  <img src="examples/images/nyu_results.jpg" width="850"/>
+</p>
 
  
 ## Results on Make3D
