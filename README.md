@@ -40,7 +40,8 @@ layer {
 <p align="center">
   <img src="examples/images/make3D.jpg" width="850"/>
 </p>
-Results of Make3D test dataset can be downloaded from [<a href='https://drive.google.com/drive/folders/1miDME0w4zcAijLYAu04zGUZJMiGAZ-BO?usp=sharing'>HERE</a>].
+Results of Make3D test dataset can be downloaded from [<a href='https://drive.google.com/drive/folders/12yV3j4h86bR4yXjJuEXFMUzi9YJXO-hB?usp=sharing'>HERE</a>]. 
+The groundtruth depth map can be downloaded from [<a href='https://drive.google.com/drive/folders/1FLDWLIu0v3rzlgJyTtyWgVcopQMCj2CR?usp=sharing'>HERE</a>].
 
 ## Citation
 Please consider citing our paper if the code is helpful in your research work:
