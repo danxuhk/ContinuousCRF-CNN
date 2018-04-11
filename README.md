@@ -37,7 +37,7 @@ layer {
  ... To stack more for fusing more scales ...</pre>
  
 ## Results on NYUD-V2
-The results with ResNet-50 as a backbone and trained on 795 standard training set. 
+The results with ResNet-50 as a backbone and trained on the standard training set with 795 training images. 
 Examples as follows:
 <p align="center">
   <img src="examples/images/nyu_results.png" width="750"/>
