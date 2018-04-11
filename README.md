@@ -36,6 +36,12 @@ layer {
   
  ... To stack more for fusing more scales ...</pre>
  
+## Results on NYUD-V2
+The results with ResNet-50 as a backbone and trained on 795 standard training set. 
+Examples as follows:
+
+
+ 
 ## Results on Make3D
 <p align="center">
   <img src="examples/images/make3D.jpg" width="850"/>
