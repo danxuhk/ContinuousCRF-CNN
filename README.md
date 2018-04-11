@@ -40,13 +40,13 @@ layer {
 The results with ResNet-50 as a backbone and trained on 795 standard training set. 
 Examples as follows:
 <p align="center">
-  <img src="examples/images/nyu_results.png" width="850"/>
+  <img src="examples/images/nyu_results.png" width="650"/>
 </p>
 Full test results can be directly downloaded from [<a href='https://drive.google.com/drive/folders/12yV3j4h86bR4yXjJuEXFMUzi9YJXO-hB?usp=sharing'>HERE</a>].
  
 ## Results on Make3D
 <p align="center">
-  <img src="examples/images/make3D.jpg" width="850"/>
+  <img src="examples/images/make3D.jpg" width="650"/>
 </p>
 Results of Make3D test dataset can be downloaded from [<a href='https://drive.google.com/drive/folders/12yV3j4h86bR4yXjJuEXFMUzi9YJXO-hB?usp=sharing'>HERE</a>]. 
 The groundtruth depth map can be downloaded from [<a href='https://drive.google.com/drive/folders/1FLDWLIu0v3rzlgJyTtyWgVcopQMCj2CR?usp=sharing'>HERE</a>].
