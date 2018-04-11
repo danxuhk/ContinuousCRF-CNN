@@ -40,9 +40,9 @@ layer {
 The results with ResNet-50 as a backbone and trained on 795 standard training set. 
 Examples as follows:
 <p align="center">
-  <img src="examples/images/nyu_results.jpg" width="850"/>
+  <img src="examples/images/nyu_results.png" width="850"/>
 </p>
-
+Full test results can be directly downloaded from [<a href='https://drive.google.com/drive/folders/12yV3j4h86bR4yXjJuEXFMUzi9YJXO-hB?usp=sharing'>HERE</a>].
  
 ## Results on Make3D
 <p align="center">
