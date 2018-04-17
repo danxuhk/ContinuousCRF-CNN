@@ -58,5 +58,12 @@ Please consider citing our paper if the code is helpful in your research work:
   author={Xu, Dan and Ricci, Elisa and Ouyang, Wanli and Wang, Xiaogang and Sebe, Nicu},
   journal={CVPR},
   year={2017}
-}</pre>
+}
+@inproceedings{xu2017multi,
+  title={Multi-Scale Continuous CRFs as Sequential Deep Networks for Monocular Depth Estimation},
+  author={Xu, Dan and Ricci, Elisa and Ouyang, Wanli and Wang, Xiaogang and Sebe, Nicu},
+  journal={CVPR},
+  year={2017}
+}
+</pre>
 
