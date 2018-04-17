@@ -52,7 +52,7 @@ Results on Make3D test dataset can be downloaded from <a href='https://drive.goo
 The groundtruth depth map can be downloaded from <a href='https://drive.google.com/drive/folders/1FLDWLIu0v3rzlgJyTtyWgVcopQMCj2CR?usp=sharing'>Here</a>.
 
 ## Citation
-Please consider citing our paper if the code is helpful in your research work:
+Please consider citing the following papers if the code is helpful in your research work:
 <pre>@inproceedings{xu2017multi,
   title={Multi-Scale Continuous CRFs as Sequential Deep Networks for Monocular Depth Estimation},
   author={Xu, Dan and Ricci, Elisa and Ouyang, Wanli and Wang, Xiaogang and Sebe, Nicu},
