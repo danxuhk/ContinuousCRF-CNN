@@ -37,7 +37,7 @@ layer {
   
  ... To stack more for fusing more scales ...</pre>
  
- An example testing script can be found from example/nyud_test.py.
+ An example testing script can be found from examples/CCRF-CNN/nyud_test.py.
  
 ## Results on NYUD-V2
 The results with ResNet-50 as a backbone and trained on the standard training set with 795 training images. 
