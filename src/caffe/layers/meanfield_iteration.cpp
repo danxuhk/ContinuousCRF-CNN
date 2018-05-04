@@ -165,13 +165,13 @@ void MeanfieldIteration<Dtype>::Forward_cpu() {
   caffe_set(count_, Dtype(0.), message_passing_.mutable_cpu_data());
 
   for (int n = 0; n < num_; ++n) {
-    caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(2.),
+    caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(1.),
         this->blobs_[0]->cpu_data(), spatial_out_blob_.cpu_data() + spatial_out_blob_.offset(n), Dtype(0.),
         message_passing_.mutable_cpu_data() + message_passing_.offset(n));
   }
 
   for (int n = 0; n < num_; ++n) {
-    caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(2.),
+    caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(1.),
         this->blobs_[1]->cpu_data(), bilateral_out_blob_.cpu_data() + bilateral_out_blob_.offset(n), Dtype(1.),
         message_passing_.mutable_cpu_data() + message_passing_.offset(n));
   }
@@ -208,13 +208,13 @@ void MeanfieldIteration<Dtype>::Forward_cpu() {
   caffe_set(count_, Dtype(0.), message_passing_norm_.mutable_cpu_data());
 
   for (int n = 0; n < num_; ++n) {
-      caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(2.),
+      caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(1.),
               this->blobs_[0]->cpu_data(), spatial_out_blob_norm_.cpu_data() + spatial_out_blob_norm_.offset(n), Dtype(0.),
               message_passing_norm_.mutable_cpu_data() + message_passing_norm_.offset(n));
   }
 
   for (int n = 0; n < num_; ++n) {
-      caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(2.),
+      caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(1.),
               this->blobs_[1]->cpu_data(), bilateral_out_blob_norm_.cpu_data() + bilateral_out_blob_norm_.offset(n), Dtype(1.),
               message_passing_norm_.mutable_cpu_data() + message_passing_norm_.offset(n));
   }
@@ -261,28 +261,28 @@ void MeanfieldIteration<Dtype>::Backward_cpu() {
   // ------------------------- Gradient w.r.t. kernels weights in the message passing path ------------
   for (int n = 0; n < num_; ++n) {
     caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasTrans, channels_, channels_,
-                          num_pixels_, Dtype(2.), message_passing_.cpu_diff() + message_passing_.offset(n),
+                          num_pixels_, Dtype(1.), message_passing_.cpu_diff() + message_passing_.offset(n),
                           spatial_out_blob_.cpu_data() + spatial_out_blob_.offset(n), Dtype(1.),
                           this->blobs_[0]->mutable_cpu_diff());
   }
 
   for (int n = 0; n < num_; ++n) {
     caffe_cpu_gemm<Dtype>(CblasNoTrans, CblasTrans, channels_, channels_,
-                          num_pixels_, Dtype(2.), message_passing_.cpu_diff() + message_passing_.offset(n),
+                          num_pixels_, Dtype(1.), message_passing_.cpu_diff() + message_passing_.offset(n),
                           bilateral_out_blob_.cpu_data() + bilateral_out_blob_.offset(n), Dtype(1.),
                           this->blobs_[1]->mutable_cpu_diff());
   }
 
   // gradient for weightsing (messing_passing_-->spatial_out_blog_/bilateral_out_blob_)
   for (int n = 0; n < num_; ++n) {
-    caffe_cpu_gemm<Dtype>(CblasTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(2.),
+    caffe_cpu_gemm<Dtype>(CblasTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(1.),
                           this->blobs_[0]->cpu_data(), message_passing_.cpu_diff() + message_passing_.offset(n),
                           Dtype(0.),
                           spatial_out_blob_.mutable_cpu_diff() + spatial_out_blob_.offset(n));
   }
 
   for (int n = 0; n < num_; ++n) {
-    caffe_cpu_gemm<Dtype>(CblasTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(2.),
+    caffe_cpu_gemm<Dtype>(CblasTrans, CblasNoTrans, channels_, num_pixels_, channels_, Dtype(1.),
                           this->blobs_[1]->cpu_data(), message_passing_.cpu_diff() + message_passing_.offset(n),
                           Dtype(0.),
                           bilateral_out_blob_.mutable_cpu_diff() + bilateral_out_blob_.offset(n));
