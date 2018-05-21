@@ -1,7 +1,7 @@
 #include <cfloat>
 #include <vector>
 
-#include "caffe/vision_layers.hpp"
+#include "caffe/layers/scale_layer.hpp"
 #include "caffe/util/math_functions.hpp"
 
 namespace caffe {

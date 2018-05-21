@@ -50,6 +50,7 @@ class DataTransformer {
   void Transform(const vector<Datum> & datum_vector,
                 Blob<Dtype>* transformed_blob);
 
+#ifdef USE_OPENCV
   /**
    * @brief Applies the transformation defined in the data layer's
    * transform_param block to a vector of Mat.
@@ -74,6 +75,7 @@ class DataTransformer {
    *    set_cpu_data() is used. See image_data_layer.cpp for an example.
    */
   void Transform(const cv::Mat& cv_img, Blob<Dtype>* transformed_blob);
+#endif  // USE_OPENCV
 
   /**
    * @brief Applies the same transformation defined in the data layer's
@@ -95,16 +97,6 @@ class DataTransformer {
    * @param datum
    *    Datum containing the data to be transformed.
    */
-
-  //#ifndef OSX
-  void LabelmapTransform(const cv::Mat& cv_img, Blob<Dtype>* transformed_blob, const int h_off, const int w_off, const bool do_mirror);
-  //#endif
-
-  //#ifndef OSX
-  void LocTransform(const cv::Mat& cv_img, Blob<Dtype>* transformed_blob, int &h_off, int &w_off, bool &do_mirror);
-  //#endif
-
-
   vector<int> InferBlobShape(const Datum& datum);
   /**
    * @brief Infers the shape of transformed_blob will have when
@@ -123,6 +115,7 @@ class DataTransformer {
    * @param mat_vector
    *    A vector of Mat containing the data to be transformed.
    */
+#ifdef USE_OPENCV
   vector<int> InferBlobShape(const vector<cv::Mat> & mat_vector);
   /**
    * @brief Infers the shape of transformed_blob will have when
@@ -132,6 +125,7 @@ class DataTransformer {
    *    cv::Mat containing the data to be transformed.
    */
   vector<int> InferBlobShape(const cv::Mat& cv_img);
+#endif  // USE_OPENCV
 
  protected:
    /**
@@ -158,4 +152,3 @@ class DataTransformer {
 }  // namespace caffe
 
 #endif  // CAFFE_DATA_TRANSFORMER_HPP_
-

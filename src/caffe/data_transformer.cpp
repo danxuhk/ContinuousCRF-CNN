@@ -1,4 +1,6 @@
+#ifdef USE_OPENCV
 #include <opencv2/core/core.hpp>
+#endif  // USE_OPENCV
 
 #include <string>
 #include <vector>
@@ -124,11 +126,13 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
   }
 }
 
+
 template<typename Dtype>
 void DataTransformer<Dtype>::Transform(const Datum& datum,
                                        Blob<Dtype>* transformed_blob) {
-  // If datum is encoded, decoded and transform the cv::image.
+  // If datum is encoded, decode and transform the cv::image.
   if (datum.encoded()) {
+#ifdef USE_OPENCV
     CHECK(!(param_.force_color() && param_.force_gray()))
         << "cannot set both force_color and force_gray";
     cv::Mat cv_img;
@@ -140,6 +144,9 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
     }
     // Transform the cv::image into blob.
     return Transform(cv_img, transformed_blob);
+#else
+    LOG(FATAL) << "Encoded datum requires OpenCV; compile with USE_OPENCV.";
+#endif  // USE_OPENCV
   } else {
     if (param_.force_color() || param_.force_gray()) {
       LOG(ERROR) << "force_color and force_gray only for encoded datum";
@@ -194,6 +201,7 @@ void DataTransformer<Dtype>::Transform(const vector<Datum> & datum_vector,
   }
 }
 
+#ifdef USE_OPENCV
 template<typename Dtype>
 void DataTransformer<Dtype>::Transform(const vector<cv::Mat> & mat_vector,
                                        Blob<Dtype>* transformed_blob) {
@@ -315,159 +323,7 @@ void DataTransformer<Dtype>::Transform(const cv::Mat& cv_img,
     }
   }
 }
-
-//#ifndef OSX
-template<typename Dtype>
-void DataTransformer<Dtype>::LocTransform(const cv::Mat& cv_img,
-        Blob<Dtype>* transformed_blob, int &h_off, int &w_off, bool &do_mirror) {
-    const int img_channels = cv_img.channels();
-    const int img_height = cv_img.rows;
-    const int img_width = cv_img.cols;
-
-    const int channels = transformed_blob->channels();
-    const int height = transformed_blob->height();
-    const int width = transformed_blob->width();
-    const int num = transformed_blob->num();
-
-    CHECK_EQ(channels, img_channels);
-    CHECK_LE(height, img_height);
-    CHECK_LE(width, img_width);
-    CHECK_GE(num, 1);
-
-    CHECK(cv_img.depth() == CV_8U) << "Image data type must be unsigned byte";
-
-    const int crop_size = param_.crop_size();
-    const Dtype scale = param_.scale();
-    do_mirror = param_.mirror() && Rand(2);
-    const bool has_mean_file = param_.has_mean_file();
-    const bool has_mean_values = mean_values_.size() > 0;
-
-    CHECK_GT(img_channels, 0);
-    CHECK_GE(img_height, crop_size);
-    CHECK_GE(img_width, crop_size);
-    Dtype* mean = NULL;
-    if (has_mean_file) {
-        CHECK_EQ(img_channels, data_mean_.channels());
-        CHECK_EQ(img_height, data_mean_.height());
-        CHECK_EQ(img_width, data_mean_.width());
-        mean = data_mean_.mutable_cpu_data();
-    }
-    if (has_mean_values) {
-        CHECK(mean_values_.size() == 1 || mean_values_.size() == img_channels) <<
-            "Specify either 1 mean_value or as many as channels: " << img_channels;
-        if (img_channels > 1 && mean_values_.size() == 1) {
-            // Replicate the mean_value for simplicity
-            for (int c = 1; c < img_channels; ++c) {
-                mean_values_.push_back(mean_values_[0]);
-            }
-        }
-    }
-
-    cv::Mat cv_cropped_img = cv_img;
-    if (crop_size) {
-        CHECK_EQ(crop_size, height);
-        CHECK_EQ(crop_size, width);
-
-        h_off = Rand(img_height - crop_size + 1);
-        w_off = Rand(img_width - crop_size + 1);
-
-        cv::Rect roi(w_off, h_off, crop_size, crop_size);
-        cv_cropped_img = cv_img(roi);
-    } else {
-        CHECK_EQ(img_height, height);
-        CHECK_EQ(img_width, width);
-    }
-
-    CHECK(cv_cropped_img.data);
-    Dtype* transformed_data = transformed_blob->mutable_cpu_data();
-    int top_index;
-    for (int h = 0; h < height; ++h) {
-        const uchar* ptr = cv_cropped_img.ptr<uchar>(h);
-        int img_index = 0;
-        for (int w = 0; w < width; ++w) {
-            for (int c = 0; c < img_channels; ++c) {
-                if (do_mirror) {
-                    top_index = (c * height + h) * width + (width - 1 - w);
-                } else {
-                    top_index = (c * height + h) * width + w;
-                }
-                //int top_index = (c * height + h) * width + w;
-                Dtype pixel = static_cast<Dtype>(ptr[img_index++]);
-                if (has_mean_file) {
-                    int mean_index = (c * img_height + h_off + h) * img_width + w_off + w;
-                    transformed_data[top_index] =
-                        (pixel - mean[mean_index]) * scale;
-                } else {
-                    if (has_mean_values) {
-                        transformed_data[top_index] =
-                            (pixel - mean_values_[c]) * scale;
-                    } else {
-                        transformed_data[top_index] = pixel * scale;
-                    }
-                }
-            }
-        }
-    }
-
-}
-//#endif
-
-//#ifndef OSX
-template<typename Dtype>
-void DataTransformer<Dtype>::LabelmapTransform(const cv::Mat& cv_img,
-        Blob<Dtype>* transformed_blob, const int h_off, const int w_off, const bool do_mirror) {
-    const int img_channels = cv_img.channels();
-    const int img_height = cv_img.rows;
-    const int img_width = cv_img.cols;
-
-    const int channels = transformed_blob->channels();
-    const int height = transformed_blob->height();
-    const int width = transformed_blob->width();
-    const int num = transformed_blob->num();
-
-    CHECK_EQ(channels, img_channels);
-    CHECK_LE(height, img_height);
-    CHECK_LE(width, img_width);
-    CHECK_GE(num, 1);
-
-    CHECK(cv_img.depth() == CV_8U) << "Image data type must be unsigned byte";
-
-    const int crop_size = param_.crop_size();
-    //const Dtype scale = param_.scale();
-
-    CHECK_GT(img_channels, 0);
-    CHECK_GE(img_height, crop_size);
-    CHECK_GE(img_width, crop_size);
-    cv::Mat cv_cropped_img = cv_img;
-    if (crop_size) {
-        CHECK_EQ(crop_size, height);
-
-        cv::Rect roi(w_off, h_off, crop_size, crop_size);
-        cv_cropped_img = cv_img(roi);
-    } else {
-        CHECK_EQ(img_height, height);
-        CHECK_EQ(img_width, width);
-    }
-    CHECK(cv_cropped_img.data);
-    Dtype* transformed_data = transformed_blob->mutable_cpu_data();
-    int top_index;
-    for (int h = 0; h < height; ++h) {
-        const uchar* ptr = cv_cropped_img.ptr<uchar>(h);
-        int img_index = 0;
-        for (int w = 0; w < width; ++w) {
-            for (int c = 0; c < img_channels; ++c) {
-                if (do_mirror) {
-                    top_index = (c * height + h) * width + (width - 1 - w);
-                } else {
-                    top_index = (c * height + h) * width + w;
-                }
-                Dtype pixel = static_cast<Dtype>(ptr[img_index++]);
-                transformed_data[top_index] = pixel;
-            }
-        }
-    }
-}
-//#endif
+#endif  // USE_OPENCV
 
 template<typename Dtype>
 void DataTransformer<Dtype>::Transform(Blob<Dtype>* input_blob,
@@ -585,6 +441,7 @@ void DataTransformer<Dtype>::Transform(Blob<Dtype>* input_blob,
 template<typename Dtype>
 vector<int> DataTransformer<Dtype>::InferBlobShape(const Datum& datum) {
   if (datum.encoded()) {
+#ifdef USE_OPENCV
     CHECK(!(param_.force_color() && param_.force_gray()))
         << "cannot set both force_color and force_gray";
     cv::Mat cv_img;
@@ -596,8 +453,10 @@ vector<int> DataTransformer<Dtype>::InferBlobShape(const Datum& datum) {
     }
     // InferBlobShape using the cv::image.
     return InferBlobShape(cv_img);
+#else
+    LOG(FATAL) << "Encoded datum requires OpenCV; compile with USE_OPENCV.";
+#endif  // USE_OPENCV
   }
-
   const int crop_size = param_.crop_size();
   const int datum_channels = datum.channels();
   const int datum_height = datum.height();
@@ -627,6 +486,7 @@ vector<int> DataTransformer<Dtype>::InferBlobShape(
   return shape;
 }
 
+#ifdef USE_OPENCV
 template<typename Dtype>
 vector<int> DataTransformer<Dtype>::InferBlobShape(const cv::Mat& cv_img) {
   const int crop_size = param_.crop_size();
@@ -657,6 +517,7 @@ vector<int> DataTransformer<Dtype>::InferBlobShape(
   shape[0] = num;
   return shape;
 }
+#endif  // USE_OPENCV
 
 template <typename Dtype>
 void DataTransformer<Dtype>::InitRand() {
