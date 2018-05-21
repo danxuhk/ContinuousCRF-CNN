@@ -19,7 +19,7 @@ The structured fusion of multiple Scales of the predictions are performed using 
 layer {
   name: "inference1" # set the name to be the same as in the training phase to 
   load parameters in the testing phase #
-  type: "MultiStageMeanfield" bottom: "upscore-map3" bottom: "upscore-map4" bottom: "data" 
+  type: "MultiContinuousMeanfield" bottom: "upscore-map3" bottom: "upscore-map4" bottom: "data" 
   top: "predicted-map1"
   param { lr_mult: 10000 # learning rate for weight of smoothness }
   param { lr_mult: 10000 # learning rate for weight of appearance }
@@ -31,7 +31,7 @@ layer {
 will be used as an input scale in this phase)##
 layer {
   name: "inference2" #if you set name "inference1", code will load parameters from caffemodel#
-  type: "MultiStageMeanfield" bottom: "predicted-map1" bottom: "upscore-map5" bottom: "data" 
+  type: "MultiContinuousMeanfield" bottom: "predicted-map1" bottom: "upscore-map5" bottom: "data" 
   top: "predicted-map2"
   param { lr_mult: 10000 # learning rate for weight of smoothness }
   param { lr_mult: 10000 # learning rate for weight of appearance }
