@@ -58,6 +58,13 @@ Full test results can be directly downloaded from <a href='https://drive.google.
 Results on Make3D test dataset can be downloaded from <a href='https://drive.google.com/drive/folders/12yV3j4h86bR4yXjJuEXFMUzi9YJXO-hB?usp=sharing'>Here</a>. 
 The groundtruth depth map can be downloaded from <a href='https://drive.google.com/drive/folders/1FLDWLIu0v3rzlgJyTtyWgVcopQMCj2CR?usp=sharing'>Here</a>.
 
+
+## Results on KITTI
+<p align="center">
+  <img src="examples/images/kitti_results.jpg" width="850"/>
+</p>
+Results on KITTI test dataset can be downloaded from <a href='https://drive.google.com/drive/folders/12yV3j4h86bR4yXjJuEXFMUzi9YJXO-hB?usp=sharing'>Here</a>. 
+
 ## Citation
 Please consider citing the following papers if the code is helpful in your research work:
 <pre>@inproceedings{xu2017multi,
